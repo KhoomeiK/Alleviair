@@ -3,8 +3,8 @@ import creds from './creds.json';
 
 const vidStream = async () => {
   const client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
-  let stream = '';
-  let localStream = '';
+  let stream;
+  let localStream;
 
   let start = true;
   let channel = '0';
@@ -110,4 +110,4 @@ const vidStream = async () => {
   }
 };
 
-vidStream()
+vidStream();

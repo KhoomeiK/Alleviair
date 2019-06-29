@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Disaster alleviation via air",
   "scripts": {
-    "start": "parcel src/index.html --port 3000",
+    "start": "parcel src/index.html --port 3000 --hmr-port 9999",
     "build": "semistandard ./src/**/*.js && parcel build src/index.html"
   },
   "repository": {
