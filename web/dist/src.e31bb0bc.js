@@ -136,8 +136,6 @@ var _creds = _interopRequireDefault(require("./creds.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log('uwu');
-
 const vidStream = async () => {
   const client = _agoraRtcSdk.default.createClient({
     mode: 'live',
@@ -147,7 +145,7 @@ const vidStream = async () => {
   let stream = '';
   let localStream = '';
   let start = true;
-  let id = 69;
+  let channel = '0';
 
   if (start) {
     console.log('starting stream!');
@@ -158,7 +156,7 @@ const vidStream = async () => {
       console.log('AgoraRTC client init failed', err);
     });
     client.join( // join to channel
-    null, id, 0, function (uid) {
+    null, channel, 0, function (uid) {
       console.log('User ' + uid + ' join channel successfully');
     }, function (err) {
       console.log('Join channel failed', err);
@@ -223,6 +221,8 @@ const vidStream = async () => {
     });
   }
 };
+
+vidStream();
 },{"agora-rtc-sdk":"../node_modules/agora-rtc-sdk/AgoraRTCSDK.min.js","./creds.json":"creds.json"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -251,7 +251,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60108" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50549" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

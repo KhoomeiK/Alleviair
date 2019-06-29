@@ -1,14 +1,13 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import creds from './creds.json';
 
-console.log('uwu');
 const vidStream = async () => {
   const client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
   let stream = '';
   let localStream = '';
 
   let start = true;
-  let id = 69;
+  let channel = '0';
 
   if (start) {
     console.log('starting stream!');
@@ -26,7 +25,7 @@ const vidStream = async () => {
     client.join(
       // join to channel
       null,
-      id,
+      channel,
       0,
       function (uid) {
         console.log('User ' + uid + ' join channel successfully');
@@ -110,3 +109,5 @@ const vidStream = async () => {
     );
   }
 };
+
+vidStream()
