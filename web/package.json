@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Disaster alleviation via air",
   "scripts": {
-    "start": "parcel src/index.html --port 3000",
+    "start": "parcel src/index.html --port 3000 --hmr-port 9999",
     "build": "semistandard ./src/**/*.js && parcel build src/index.html"
   },
   "repository": {
@@ -19,5 +19,12 @@
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
     "semistandard": "^13.0.1"
-  }
+  },
+  "dependencies": {
+    "agora-rtc-sdk": "^2.7.0",
+    "babel-polyfill": "^6.26.0"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
 }

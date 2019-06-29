@@ -1,8 +1,31 @@
-body {
-  background-color: white;
-  margin: 0px;
-  overflow: hidden;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      section{
+        margin: 20px 20px;
+      }
+      
+      .dark{
+        color: #333333;
+      }
+      
+      main{
+        margin: 40px 40px;
+        border-radius: 15px;
+      }
+      
+      img{
+        width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
