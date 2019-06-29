@@ -1,7 +1,8 @@
-console.log('Hello World!');
+import AgoraRTC from 'agora-rtc-sdk';
+import creds from './creds.json';
 
 vidStream = async() => {
-  let client = AgoraRTC.createClient({ mode: "live", codec: "h264" });
+  const client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
   let stream = "";
   let localStream = "";
   
@@ -12,7 +13,7 @@ vidStream = async() => {
     console.log("starting stream!");
     await client.init(
       // initialize Agora
-      "c7478e66b8504ad49d13d10d0d4cec75",
+      creds.agora.appid,
       () => {
         console.log("AgoraRTC client initialized");
       },
