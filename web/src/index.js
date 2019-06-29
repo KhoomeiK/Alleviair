@@ -1,14 +1,30 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import creds from './creds.json';
 
-const client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
+const streamButton = document.getElementById('streambutton');
+
+const client = AgoraRTC.createClient({
+  mode: 'live',
+  codec: 'h264'
+});
+
 let stream;
 let localStream;
-
-let start = true;
 let channel = '0';
+let running = false;
 
-if (start) {
+streamButton.addEventListener('click', (e) => {
+  running = !running;
+  if (running) {
+    start();
+    e.target.textContent = 'Stop';
+  } else {
+    stop();
+    e.target.textContent = 'Start';
+  }
+});
+
+function start () {
   console.log('starting stream!');
   client.init(
     // initialize Agora
@@ -82,7 +98,9 @@ if (start) {
     );
     remoteStream.play('agora_remote');
   });
-} else {
+}
+
+function stop () {
   console.log('not ready');
   client.unpublish(stream, function (err) {
     if (err) {
