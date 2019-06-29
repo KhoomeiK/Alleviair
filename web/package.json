@@ -21,6 +21,10 @@
     "semistandard": "^13.0.1"
   },
   "dependencies": {
-    "agora-rtc-sdk": "^2.7.0"
-  }
+    "agora-rtc-sdk": "^2.7.0",
+    "babel-polyfill": "^6.26.0"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
 }

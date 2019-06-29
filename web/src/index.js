@@ -1,25 +1,25 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import creds from './creds.json';
 
-console.log('uwu')
-vidStream = async () => {
+console.log('uwu');
+const vidStream = async () => {
   const client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
-  let stream = "";
-  let localStream = "";
-  
+  let stream = '';
+  let localStream = '';
+
   let start = true;
   let id = 69;
 
   if (start) {
-    console.log("starting stream!");
+    console.log('starting stream!');
     await client.init(
       // initialize Agora
       creds.agora.appid,
       () => {
-        console.log("AgoraRTC client initialized");
+        console.log('AgoraRTC client initialized');
       },
       err => {
-        console.log("AgoraRTC client init failed", err);
+        console.log('AgoraRTC client init failed', err);
       }
     );
 
@@ -28,11 +28,11 @@ vidStream = async () => {
       null,
       id,
       0,
-      function(uid) {
-        console.log("User " + uid + " join channel successfully");
+      function (uid) {
+        console.log('User ' + uid + ' join channel successfully');
       },
-      function(err) {
-        console.log("Join channel failed", err);
+      function (err) {
+        console.log('Join channel failed', err);
       }
     );
 
@@ -46,59 +46,67 @@ vidStream = async () => {
 
     localStream.init(
       // initalize audio/video stream and play local stream on DOM
-      function() {
-        console.log("getUserMedia successfully");
+      function () {
+        console.log('getUserMedia successfully');
         // Use agora_local as ID of the dom element
-        localStream.play("agora_local");
+        localStream.play('agora_local');
 
-        client.publish(localStream, function(err) {
+        client.publish(localStream, function (err) {
           // publish stream to channel
-          console.log("Publish local stream error: " + err);
+          console.log('Publish local stream error: ' + err);
         });
       },
-      function(err) {
-        console.log("getUserMedia failed", err);
+      function (err) {
+        console.log('getUserMedia failed', err);
       }
     );
 
-    client.on("stream-published", function(evt) {
+    client.on('stream-published', function (evt) {
       // occurs after stream publishes
-      console.log("Published local stream successfully");
+      console.log('Published local stream successfully');
     });
 
-    client.on("stream-added", function(evt) {
+    client.on('stream-added', function (evt) {
       // subscribes to stream when new stream added to channel
       stream = evt.stream;
-      console.log("New stream added: " + stream.getId());
+      console.log('New stream added: ' + stream.getId());
 
-      client.subscribe(stream, function(err) {
-        console.log("Subscribe stream failed", err);
+      client.subscribe(stream, function (err) {
+        console.log('Subscribe stream failed', err);
       });
     });
 
-    client.on("stream-subscribed", function(evt) {
+    client.on('stream-subscribed', function (evt) {
       // plays stream once subscribed
       let remoteStream = evt.stream;
       console.log(
-        "Subscribe remote stream successfully: " + remoteStream.getId()
+        'Subscribe remote stream successfully: ' + remoteStream.getId()
       );
-      remoteStream.play("agora_remote");
+      remoteStream.play('agora_remote');
     });
   } else {
-    console.log("not ready");
-    client.unpublish(stream, function(err) {
-      console.log("stream unpublished");
+    console.log('not ready');
+    client.unpublish(stream, function (err) {
+      if (err) {
+        console.error(`Error while unpublishing: ${err}`);
+      } else {
+        console.log('stream unpublished');
+      }
     });
-    client.unsubscribe(stream, function(err) {
-      console.log("stream unsubscribed");
+    client.unsubscribe(stream, function (err) {
+      if (err) {
+        console.error(`Error while unsubscribing: ${err}`);
+      } else {
+        console.log('stream unsubscribed');
+      }
     });
     client.leave(
-      function() {
-        console.log("Left channel successfully");
+      function () {
+        console.log('Left channel successfully');
       },
-      function(err) {
-        console.log("Leave channel failed");
+      function (err) {
+        console.log(`Leave channel failed: ${err}`);
       }
     );
   }
-}
+};
