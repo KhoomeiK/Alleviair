@@ -1,0 +1,21 @@
+{
+  "name": "alleviair",
+  "version": "1.0.0",
+  "description": "Disaster alleviation via air",
+  "scripts": {
+    "start": "parcel src/index.html --port 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhoomeiK/Alleviair.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/KhoomeiK/Alleviair/issues"
+  },
+  "homepage": "https://github.com/KhoomeiK/Alleviair#readme",
+  "dependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}
