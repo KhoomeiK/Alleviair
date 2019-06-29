@@ -136,16 +136,119 @@ var _creds = _interopRequireDefault(require("./creds.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var client = _agoraRtcSdk.default.createClient({
-  mode: 'live',
-  codec: 'h264'
-});
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-client.init(_creds.default.agora.appid, function () {
-  console.log('AgoraRTC client initialized');
-}, function (err) {
-  console.log('AgoraRTC client init failed', err);
-});
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+console.log('uwu');
+
+vidStream =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee() {
+    var client, stream, localStream, start, id;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            client = _agoraRtcSdk.default.createClient({
+              mode: 'live',
+              codec: 'h264'
+            });
+            stream = "";
+            localStream = "";
+            start = true;
+            id = 69;
+
+            if (!start) {
+              _context.next = 17;
+              break;
+            }
+
+            console.log("starting stream!");
+            _context.next = 9;
+            return client.init( // initialize Agora
+            _creds.default.agora.appid, function () {
+              console.log("AgoraRTC client initialized");
+            }, function (err) {
+              console.log("AgoraRTC client init failed", err);
+            });
+
+          case 9:
+            client.join( // join to channel
+            null, id, 0, function (uid) {
+              console.log("User " + uid + " join channel successfully");
+            }, function (err) {
+              console.log("Join channel failed", err);
+            });
+            localStream = _agoraRtcSdk.default.createStream({
+              // create video/audio stream
+              streamID: 1,
+              audio: true,
+              video: true,
+              screen: false
+            });
+            localStream.init( // initalize audio/video stream and play local stream on DOM
+            function () {
+              console.log("getUserMedia successfully"); // Use agora_local as ID of the dom element
+
+              localStream.play("agora_local");
+              client.publish(localStream, function (err) {
+                // publish stream to channel
+                console.log("Publish local stream error: " + err);
+              });
+            }, function (err) {
+              console.log("getUserMedia failed", err);
+            });
+            client.on("stream-published", function (evt) {
+              // occurs after stream publishes
+              console.log("Published local stream successfully");
+            });
+            client.on("stream-added", function (evt) {
+              // subscribes to stream when new stream added to channel
+              stream = evt.stream;
+              console.log("New stream added: " + stream.getId());
+              client.subscribe(stream, function (err) {
+                console.log("Subscribe stream failed", err);
+              });
+            });
+            client.on("stream-subscribed", function (evt) {
+              // plays stream once subscribed
+              var remoteStream = evt.stream;
+              console.log("Subscribe remote stream successfully: " + remoteStream.getId());
+              remoteStream.play("agora_remote");
+            });
+            _context.next = 21;
+            break;
+
+          case 17:
+            console.log("not ready");
+            client.unpublish(stream, function (err) {
+              console.log("stream unpublished");
+            });
+            client.unsubscribe(stream, function (err) {
+              console.log("stream unsubscribed");
+            });
+            client.leave(function () {
+              console.log("Left channel successfully");
+            }, function (err) {
+              console.log("Leave channel failed");
+            });
+
+          case 21:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function vidStream() {
+    return _ref.apply(this, arguments);
+  };
+}();
 },{"agora-rtc-sdk":"../node_modules/agora-rtc-sdk/AgoraRTCSDK.min.js","./creds.json":"creds.json"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -174,7 +277,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60108" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50549" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

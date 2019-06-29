@@ -1,7 +1,8 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import creds from './creds.json';
 
-vidStream = async() => {
+console.log('uwu')
+vidStream = async () => {
   const client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
   let stream = "";
   let localStream = "";
