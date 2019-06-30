@@ -1,12 +1,8 @@
 # Alleviair
 
-Disaster Alleviation via Air
+Cloud-based mapping for disaster response.
 
-## Botkit Starter Kit
+[Web Portal](https://alleviair.herokuapp.com/)
+[Messenger Chatbot](https://www.messenger.com/t/786686305061573)
 
-This is a Botkit starter kit for facebook, created with the [Yeoman generator](https://github.com/howdyai/botkit/tree/master/packages/generator-botkit#readme)
-
-[Botkit Docs](https://botkit.ai/docs/v4)
-
-This bot is powered by [a folder full of modules](https://botkit.ai/docs/v4/core.html#organize-your-bot-code).
-Edit the samples, and add your own in the [features/](features/) folder.
+For more info, check out the [Hackathon.io page](https://www.hackathon.io/projects/22299)
