@@ -7,9 +7,10 @@ body {
   -ms-user-select: none; */
 }
 
-/* .video-container {
+.video-container {
   padding: 0px;
-} */
+  margin-top: calc(100% - 3.5em);
+}
 
 video {
   position: relative !important;

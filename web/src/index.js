@@ -11,11 +11,16 @@ const client = AgoraRTC.createClient({
 let stream;
 let localStream;
 let channel = '0';
-let running = false;
+
+let state = {
+  running: false,
+  published: false,
+  subscribed: false
+};
 
 streamButton.addEventListener('click', (e) => {
-  running = !running;
-  if (running) {
+  state.running = !state.running;
+  if (state.running) {
     start();
     e.target.textContent = 'Stop';
   } else {
@@ -78,6 +83,7 @@ function start () {
   client.on('stream-published', function (evt) {
     // occurs after stream publishes
     console.log('Published local stream successfully');
+    state.published = true;
   });
 
   client.on('stream-added', function (evt) {
@@ -101,21 +107,24 @@ function start () {
 }
 
 function stop () {
-  console.log('not ready');
-  client.unpublish(stream, function (err) {
-    if (err) {
-      console.error(`Error while unpublishing: ${err}`);
-    } else {
-      console.log('stream unpublished');
-    }
-  });
-  client.unsubscribe(stream, function (err) {
-    if (err) {
-      console.error(`Error while unsubscribing: ${err}`);
-    } else {
-      console.log('stream unsubscribed');
-    }
-  });
+  if (state.published) {
+    client.unpublish(stream, function (err) {
+      if (err) {
+        console.error(`Error while unpublishing: ${err}`);
+      } else {
+        console.log('stream unpublished');
+      }
+    });
+  }
+  if (state.subscribed) {
+    client.unsubscribe(stream, function (err) {
+      if (err) {
+        console.error(`Error while unsubscribing: ${err}`);
+      } else {
+        console.log('stream unsubscribed');
+      }
+    });
+  }
   client.leave(
     function () {
       console.log('Left channel successfully');
@@ -125,3 +134,23 @@ function stop () {
     }
   );
 }
+
+document.getElementById('join-leave').addEventListener('click', (e) => {
+  if (rtc.joined) {
+    leave(rtc);
+    e.target.textContent = 'Join';
+  } else {
+    join(rtc);
+    e.target.textContent = 'Leave';
+  }
+});
+
+document.getElementById('publish-unpublish').addEventListener('click', (e) => {
+  if (rtc.published) {
+    unpublish(rtc);
+    e.target.textContent = 'Publish';
+  } else {
+    publish(rtc);
+    e.target.textContent = 'Unpublish';
+  }
+});
