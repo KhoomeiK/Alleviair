@@ -26,6 +26,8 @@ module.exports = function (controller) {
       }
     } else {
       // TODO: Make a request with IBM Watson to send current 'message' data to SQL
+      // -> Take 'message' pass it through your IBM Watson API and return all of the output into tempStorage
+      //    (place it wherever you want inside that object.)
       tempStorage = { message: message.text };
 
       // No attachment
