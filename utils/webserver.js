@@ -1,4 +1,4 @@
-const { Pool, Client } = require('pg')
+const { Pool } = require('pg');
 
 /**
  * Web Server (for other GET/POST requests)
@@ -12,12 +12,12 @@ module.exports = function (server) {
       database: 'postgres',
       password: 'password',
       port: 5432
-    })
+    });
 
     pool.query('SELECT * from POINTS', (err, data) => {
-      console.log(err, data)
-      res.send(data)
-      pool.end()
+      console.log(err, data);
+      res.send(data);
+      pool.end();
     });
-  })
-}
+  });
+};
