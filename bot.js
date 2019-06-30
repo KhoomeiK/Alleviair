@@ -10,10 +10,11 @@ const { BotkitCMSHelper } = require('botkit-plugin-cms');
 
 const { FacebookAdapter, FacebookEventTypeMiddleware } = require('botbuilder-adapter-facebook');
 
+// Import webserver for non botkit-related things
+const webserver = require('./features/webserver');
+
 // Load process.env values from .env file
 require('dotenv').config();
-
-let storage = null;
 
 const adapter = new FacebookAdapter({
   verify_token: process.env.FACEBOOK_VERIFY_TOKEN,
@@ -28,9 +29,7 @@ const controller = new Botkit({
   debug: true,
   webhook_uri: '/api/messages',
 
-  adapter: adapter,
-
-  storage
+  adapter: adapter
 });
 
 if (process.env.cms_uri) {
@@ -39,6 +38,9 @@ if (process.env.cms_uri) {
     token: process.env.cms_token
   }));
 }
+
+// Call Webserver using the current express server
+webserver(controller.webserver);
 
 // Once the bot has booted up its internal services, you can use them to do stuff.
 controller.ready(() => {
