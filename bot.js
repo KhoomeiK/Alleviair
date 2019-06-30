@@ -22,6 +22,19 @@ const adapter = new FacebookAdapter({
   app_secret: process.env.FACEBOOK_APP_SECRET
 });
 
+const allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+  // intercept OPTIONS method
+  if (req.method === 'OPTIONS') {
+    res.send(200);
+  } else {
+    next();
+  }
+};
+
 // emit events based on the type of facebook event being received
 adapter.use(new FacebookEventTypeMiddleware());
 
@@ -31,6 +44,8 @@ const controller = new Botkit({
 
   adapter: adapter
 });
+
+controller.webserver.use(allowCrossDomain);
 
 if (process.env.cms_uri) {
   controller.usePlugin(new BotkitCMSHelper({
