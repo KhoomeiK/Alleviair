@@ -18,7 +18,7 @@ module.exports = async function (controller) {
           let insertion = `INSERT INTO Points
                         (title, latitude, longitude, tags, id)
                         VALUES 
-                        (${tempStorage.message}, ${coordinates[0]},  ${coordinates[1]},  ${tempStorage.watsonData}, ${Math.random() * 10000});`;
+                        ('${tempStorage.message}', ${coordinates.lat},  ${coordinates.long},  ${tempStorage.watsonData}, ${Math.round(Math.random() * 10000)});`;
           console.log(insertion);
           
           const pool = new Pool({
