@@ -13,7 +13,7 @@ module.exports = function (server) {
       password: 'password',
       port: 5432
     });
-    
+
     pool.query('SELECT * from POINTS;', (err, data) => {
       console.log(err, data);
       res.send(data.rows);

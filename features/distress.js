@@ -20,7 +20,7 @@ module.exports = async function (controller) {
                         VALUES 
                         ('${tempStorage.message}', ${coordinates.lat},  ${coordinates.long},  ${tempStorage.watsonData}, ${Math.round(Math.random() * 10000)});`;
           console.log(insertion);
-          
+
           const pool = new Pool({
             user: 'super',
             host: 'mydbinstance.cyzajcuo8mvf.us-east-1.rds.amazonaws.com',
