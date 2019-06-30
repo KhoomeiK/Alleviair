@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <title>Alleviair</title>
-    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="style.css" />
-  </head>  
 
-  <body class="text-center">
-    
-      
-    
-    <header class="masthead mb-auto" id="header">
-        <img src="pictures/Logo.png" class="logo"/>
-        <nav class="nav nav-masthead justify-content-center">
-          <p id="button" ><a class="nav-link" href="map.html">Map</a></p>
-          <p id="button" ><a class="nav-link" href="info.html">Info</a></p>
-        </nav>
-    </header>
-    
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="background">
- 
-      
-      
-      
-  <main role="main" class="pad" id="pad2">
-    
-  <div id="map"></div>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+<head>
+  <title>Alleviair</title>
+  <link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-            <script src="map.js"></script>
+<body class="text-center">
+
+  <header class="masthead mb-auto" id="header">
+    <img src="pictures/Logo.png" class="logo" />
+    <nav class="nav nav-masthead justify-content-center">
+      <p id="button"><a class="nav-link" href="map.html">Map</a></p>
+      <p id="button"><a class="nav-link" href="info.html">Info</a></p>
+    </nav>
+  </header>
+
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="background">
+
+    <main role="main" class="pad" id="pad2">
+
+      <div id="map"></div>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+      <script src="map.js"></script>
 
       <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV1ABQbG5cWJk4uWI22NxyDcpQ_736s_0&callback=initMap">
-</script>
-    
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV1ABQbG5cWJk4uWI22NxyDcpQ_736s_0&callback=initMap">
+      </script>
 
-</main>
-      
-      
-      
-      
-      
-      
 
-</div>
+    </main>
+
+  </div>
 </body>
+
 </html>

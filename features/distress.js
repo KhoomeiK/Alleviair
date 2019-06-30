@@ -39,7 +39,7 @@ module.exports = async function (controller) {
               }
 
               pool.end();
-              console.log(data);
+              // console.log(data);
               resolve(data);
             });
           });

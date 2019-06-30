@@ -28,7 +28,10 @@ module.exports = function (server) {
     });
 
     pool.query('SELECT * from POINTS;', (err, data) => {
-      console.log(err, data);
+      if (err) {
+        console.error(err);
+      }
+      // console.log(err, data);
       res.send(data.rows);
       pool.end();
     });
