@@ -3,7 +3,7 @@
  */
 module.exports = function (controller) {
   controller.on('message', async (bot, message) => {
-    console.log(message.timestamp);
+    console.log(message.message.attachments);
     await bot.reply(message, {
       text: 'Hello. Please share your location so help can arrive as soon as possible.',
       quick_replies: [
