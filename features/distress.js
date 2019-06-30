@@ -4,6 +4,7 @@
 module.exports = function (controller) {
   controller.on('facebook_postback', async (bot, message) => {
     console.log('postback');
+    await bot.reply(message, 'postback');
   });
 
   controller.on('message', async (bot, message) => {
