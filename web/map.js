@@ -6,17 +6,17 @@ function initMap () {
   function recurse () {
     setTimeout(() => {
       $.get('http://alleviair.herokuapp.com/get_points', data => {
-        // console.log(data);
+      // console.log(data);
         for (let point in data) {
-          // console.log(data[point]);
+        // console.log(data[point]);
           if (tracker.filter(obj => obj.id === data[point].id).length === 0) {
             tracker.push(data[point]);
             var loc = { lat: Number(data[point].latitude), lng: Number(data[point].longitude) };
             new google.maps.Marker({ position: loc, title: data[point].title, map: map });
             console.log(`Added point: ${data[point].title}`);
           }
-          recurse();
         }
+        recurse();
       });
     }, 5000);
   }
