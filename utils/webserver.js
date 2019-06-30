@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const { Pool } = require('pg');
 
@@ -10,12 +11,12 @@ module.exports = function (server) {
 
   server.get('/', (req, res) => {
     // res.send('Sorry, the web app is currently only available locally');
-    res.render('./web/info.html');
+    res.sendFile(path.join(__dirname, '../web/info.html'));
   });
 
   server.get('/maps', (req, res) => {
     // res.send('Sorry, the web app is currently only available locally');
-    res.render('./web/maps.html');
+    res.sendFile(path.join(__dirname, '../web/maps.html'));
   });
 
   server.get('/get_points', (req, res) => {
