@@ -2,7 +2,7 @@
 
 Disaster Alleviation via Air
 
-# Botkit Starter Kit
+## Botkit Starter Kit
 
 This is a Botkit starter kit for facebook, created with the [Yeoman generator](https://github.com/howdyai/botkit/tree/master/packages/generator-botkit#readme)
 
