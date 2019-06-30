@@ -6,7 +6,7 @@ let tempStorage;
 module.exports = function (controller) {
   controller.on('message', async (bot, message) => {
     // If it contians an attachment
-    if (message.nessage.attachments.length > 0) {
+    if (message.message.attachments && message.message.attachments.length > 0) {
       // Received location data
       if (message.message.attachments[0].type === 'location') {
         const { coordinates } = message.message.attachments[0].payload;
