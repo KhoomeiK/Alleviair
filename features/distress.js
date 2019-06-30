@@ -15,6 +15,8 @@ module.exports = async function (controller) {
         const { coordinates } = message.message.attachments[0].payload;
         console.log(coordinates);
         if (tempStorage) {
+          console.log(tempStorage);
+
           let insertion = `INSERT INTO Points
                         (title, latitude, longitude, tags, id)
                         VALUES 
@@ -29,18 +31,23 @@ module.exports = async function (controller) {
             port: 5432
           });
 
-          pool.query(insertion, async (err, data) => {
-            console.log(err, data);
+          await new Promise((resolve, reject) => {
+            pool.query(insertion, async (err, data) => {
+              if (err) {
+                reject(err);
+                console.error(err);
+              }
 
-            await bot.reply(message, {
-              text: 'Okay, please wait as help comes to you.'
+              pool.end();
+              console.log(data);
+              resolve(data);
             });
+          });
 
-            pool.end();
+          await bot.reply(message, {
+            text: 'Okay, please wait as help comes to you.'
           });
         }
-
-        console.log(tempStorage);
 
         // TODO: Make a request to database to push "tempStorage" data through SQL
       } else {
