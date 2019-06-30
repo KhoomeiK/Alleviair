@@ -11,7 +11,7 @@ const { BotkitCMSHelper } = require('botkit-plugin-cms');
 const { FacebookAdapter, FacebookEventTypeMiddleware } = require('botbuilder-adapter-facebook');
 
 // Import webserver for non botkit-related things
-const webserver = require('./webserver');
+const webserver = require('./utils/webserver');
 
 // Load process.env values from .env file
 require('dotenv').config();
