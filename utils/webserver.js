@@ -9,13 +9,13 @@ module.exports = function (server) {
   server.use(express.static('web'));
 
   server.get('/', (req, res) => {
-    res.send('Sorry, the web app is currently only available locally');
-    // res.render('./web/info.html');
+    // res.send('Sorry, the web app is currently only available locally');
+    res.render('./web/info.html');
   });
 
   server.get('/maps', (req, res) => {
-    res.send('Sorry, the web app is currently only available locally');
-    // res.render('./web/maps.html');
+    // res.send('Sorry, the web app is currently only available locally');
+    res.render('./web/maps.html');
   });
 
   server.get('/get_points', (req, res) => {
