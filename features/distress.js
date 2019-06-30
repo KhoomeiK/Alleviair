@@ -1,16 +1,42 @@
+let tempStorage;
+
 /**
  * @param {import('botkit').Botkit} controller
  */
 module.exports = function (controller) {
   controller.on('message', async (bot, message) => {
-    console.log(message.message.attachments);
-    await bot.reply(message, {
-      text: 'Hello. Please share your location so help can arrive as soon as possible.',
-      quick_replies: [
-        {
-          content_type: 'location'
+    // If it contians an attachment
+    if (message.nessage.attachments.length > 0) {
+      // Received location data
+      if (message.message.attachments[0].type === 'location') {
+        const { coordinates } = message.message.attachments[0].payload;
+
+        if (tempStorage) {
+          tempStorage.coordinates = coordinates;
         }
-      ]
-    });
+
+        console.log(tempStorage);
+
+        // TODO: Make a request to database to push "tempStorage" data through SQL
+      } else {
+        // Attachment but not location, unknown
+        await bot.reply(message, {
+          text: 'Sorry, I\'m unsure what to do with this.'
+        });
+      }
+    } else {
+      // TODO: Make a request with IBM Watson to send current 'message' data to SQL
+      tempStorage = { message: message.text };
+
+      // No attachment
+      await bot.reply(message, {
+        text: 'Hello. Please share your location so help can arrive as soon as possible.',
+        quick_replies: [
+          {
+            content_type: 'location'
+          }
+        ]
+      });
+    }
   });
 };
