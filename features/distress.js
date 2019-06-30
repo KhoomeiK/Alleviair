@@ -1,11 +1,11 @@
-let tempStorage;
+const watson = require('../utils/watsonCall');
 
-import watson from '../JSstuff/watsonCall.js';
+let tempStorage;
 
 /**
  * @param {import('botkit').Botkit} controller
  */
-module.exports = function (controller) {
+module.exports = async function (controller) {
   controller.on('message', async (bot, message) => {
     // If it contians an attachment
     if (message.message.attachments && message.message.attachments.length > 0) {
@@ -30,9 +30,8 @@ module.exports = function (controller) {
       // TODO: Make a request with IBM Watson to send current 'message' data to SQL
       // -> Take 'message' pass it through your IBM Watson API and return all of the output into tempStorage
       //    (place it wherever you want inside that object.)
-      
-      tempStorage = { message: message.text , thing: watson(message)};
-      
+      // call to other file watsonCall()
+      tempStorage = { message: message.text, watsonData: await watson(message.text) };
 
       // No attachment
       await bot.reply(message, {
