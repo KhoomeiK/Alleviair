@@ -3,7 +3,7 @@
     "**/node_modules": true,
   },
   "eslint.enable": false,
-  "javascript.format.enable": false,
+  "javascript.format.enable": true,
   "beautify.ignore": [
     "./**/*.js"
   ],

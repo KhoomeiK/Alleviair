@@ -14,7 +14,24 @@ module.exports = async function (controller) {
         const { coordinates } = message.message.attachments[0].payload;
 
         if (tempStorage) {
-          tempStorage.coordinates = coordinates;
+
+          let insertion = `INSERT INTO Points
+                        (title, latitude, longitude, tags, id)
+                        VALUES 
+                        (${tempStorage.message}, ${coordinates[0]},  ${coordinates[1]},  ${tempStorage.watsonData}, ${Math.random() * 10000});`
+          
+          const pool = new Pool({
+            user: 'super',
+            host: 'mydbinstance.cyzajcuo8mvf.us-east-1.rds.amazonaws.com',
+            database: 'postgres',
+            password: 'password',
+            port: 5432
+          })
+      
+          pool.query(insertion, (err, data) => {
+            console.log(err, data)
+            pool.end()
+          });
         }
 
         console.log(tempStorage);
