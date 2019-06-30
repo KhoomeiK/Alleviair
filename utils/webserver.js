@@ -6,7 +6,6 @@ const { Pool } = require('pg');
  */
 module.exports = function (server) {
   server.get('/get_points', (req, res) => {
-    console.log('prepool')
     const pool = new Pool({
       user: 'super',
       host: 'mydbinstance.cyzajcuo8mvf.us-east-1.rds.amazonaws.com',
@@ -15,11 +14,9 @@ module.exports = function (server) {
       port: 5432
     });
     
-    console.log('preselect')
-    pool.query('SELECT * from POINTS', (err, data) => {
-      console.log('received')
+    pool.query('SELECT * from POINTS;', (err, data) => {
       console.log(err, data);
-      res.send(data);
+      res.send(data.rows);
       pool.end();
     });
   });

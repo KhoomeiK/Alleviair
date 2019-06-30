@@ -13,13 +13,14 @@ module.exports = async function (controller) {
       // Received location data
       if (message.message.attachments[0].type === 'location') {
         const { coordinates } = message.message.attachments[0].payload;
-
+        console.log(coordinates);
         if (tempStorage) {
           let insertion = `INSERT INTO Points
                         (title, latitude, longitude, tags, id)
                         VALUES 
                         (${tempStorage.message}, ${coordinates[0]},  ${coordinates[1]},  ${tempStorage.watsonData}, ${Math.random() * 10000});`;
-
+          console.log(insertion);
+          
           const pool = new Pool({
             user: 'super',
             host: 'mydbinstance.cyzajcuo8mvf.us-east-1.rds.amazonaws.com',
