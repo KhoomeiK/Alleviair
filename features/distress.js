@@ -5,7 +5,7 @@ let tempStorage;
 /**
  * @param {import('botkit').Botkit} controller
  */
-module.exports = function (controller) {
+module.exports = async function (controller) {
   controller.on('message', async (bot, message) => {
     // If it contians an attachment
     if (message.message.attachments && message.message.attachments.length > 0) {
@@ -31,7 +31,7 @@ module.exports = function (controller) {
       // -> Take 'message' pass it through your IBM Watson API and return all of the output into tempStorage
       //    (place it wherever you want inside that object.)
       // call to other file watsonCall()
-      tempStorage = { message: message.text, watsonData: watson(message.text) };
+      tempStorage = { message: message.text, watsonData: await watson(message.text) };
 
       // No attachment
       await bot.reply(message, {
