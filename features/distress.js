@@ -17,5 +17,9 @@ module.exports = function (controller) {
         }
       ]
     });
+
+    await bot.reply(message, {
+      text: JSON.stringify(message)
+    });
   });
 };
