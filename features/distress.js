@@ -1,4 +1,4 @@
-import { Pool } from 'pg';
+const { Pool } = require('pg');
 const watson = require('../utils/watsonCall');
 
 let tempStorage;
