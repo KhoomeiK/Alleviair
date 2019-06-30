@@ -1,3 +1,4 @@
+const express = require('express');
 const { Pool } = require('pg');
 
 /**
@@ -5,6 +6,16 @@ const { Pool } = require('pg');
  * @param {import('express').Application} server
  */
 module.exports = function (server) {
+  server.use(express.static('web'));
+
+  server.get('/', (req, res) => {
+    res.render('./web/info.html');
+  });
+
+  server.get('/maps', (req, res) => {
+    res.render('./web/maps.html');
+  });
+
   server.get('/get_points', (req, res) => {
     const pool = new Pool({
       user: 'super',

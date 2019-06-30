@@ -29,8 +29,13 @@ module.exports = async function (controller) {
             port: 5432
           });
 
-          pool.query(insertion, (err, data) => {
+          pool.query(insertion, async (err, data) => {
             console.log(err, data);
+
+            await bot.reply(message, {
+              text: 'Okay, please wait as help comes to you.'
+            });
+
             pool.end();
           });
         }
