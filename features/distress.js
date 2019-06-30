@@ -1,4 +1,4 @@
-import watson from '../utils/watsonCall.js.js';
+const watson = require('../utils/watsonCall');
 
 let tempStorage;
 
