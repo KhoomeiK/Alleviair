@@ -17,7 +17,8 @@ header {
 }
 
 .pad {
-  margin: 130px 10px 10px 10px;
+  padding: 130px 10px 10px 10px;
+  height: 100%;
 }
 
 #marg {
@@ -57,6 +58,10 @@ header {
   height: 100%;
 }
 
+.full-height {
+  height: 100vh !important;
+}
+
 #foottext {
   color: darkgrey;
 }
@@ -79,8 +84,7 @@ header {
 
 #map {
   width: 100%;
-  height: 400px;
-
+  height: 100%;
 }
 
 .nav {
