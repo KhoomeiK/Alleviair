@@ -6,7 +6,7 @@ const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
 });
 
 const analyzeParams = {
-  'text': 'There was a rockslide. 3 people and a dog died.',
+  'text': 'A wildfire burned down a tree, covering the road.',
   'features': {
     'keywords': {
       'limit': 3
