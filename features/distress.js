@@ -12,6 +12,8 @@ module.exports = async function (controller) {
     if (message.message.attachments && message.message.attachments.length > 0) {
       // Received location data
       if (message.message.attachments[0].type === 'location') {
+        console.log('RECEIVED A LOCATIION');
+        
         const { coordinates } = message.message.attachments[0].payload;
         console.log(coordinates);
         if (tempStorage) {
@@ -61,15 +63,17 @@ module.exports = async function (controller) {
       // -> Take 'message' pass it through your IBM Watson API and return all of the output into tempStorage
       //    (place it wherever you want inside that object.)
       // call to other file watsonCall()
+      console.log('RECEIVED A MESSAGE');
+      
       try {
-        watsonData = await watson(message.text);
+        let watsonData = await watson(message.text);
+        tempStorage = { message: message.text, watsonData };
+        console.log(tempStorage);
       }
       catch (err) {
         console.log(error);
         await bot.reply(message, { text: 'ERROR!' });
       }
-      tempStorage = { message: message.text, watsonData };
-      console.log(tempStorage)
 
       // No attachment
       await bot.reply(message, {
