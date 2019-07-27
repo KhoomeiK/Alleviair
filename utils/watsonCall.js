@@ -29,4 +29,3 @@ module.exports = async function (userText){
     return 'Error';
   }
 }
-

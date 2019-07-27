@@ -61,7 +61,15 @@ module.exports = async function (controller) {
       // -> Take 'message' pass it through your IBM Watson API and return all of the output into tempStorage
       //    (place it wherever you want inside that object.)
       // call to other file watsonCall()
-      tempStorage = { message: message.text, watsonData: await watson(message.text) };
+      try {
+        watsonData = await watson(message.text);
+      }
+      catch (err) {
+        console.log(error);
+        await bot.reply(message, { text: 'ERROR!' });
+      }
+      tempStorage = { message: message.text, watsonData };
+      console.log(tempStorage)
 
       // No attachment
       await bot.reply(message, {
