@@ -24,6 +24,7 @@ module.exports = async function (userText){
     return out;
   }
   catch(err) {
+    console.log(error);
     return 'Error'
   }
 }
