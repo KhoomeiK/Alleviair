@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+var sqlstr = require('sqlstring');
 const watson = require('../utils/watsonCall');
 
 let tempStorage;
@@ -22,7 +23,7 @@ module.exports = async function (controller) {
           let insertion = `INSERT INTO Points
                         (title, latitude, longitude, tags, id)
                         VALUES 
-                        ('${tempStorage.message}', ${coordinates.lat},  ${coordinates.long},  '${tempStorage.watsonData}', ${Math.round(Math.random() * 10000)});`;
+                        (${sqlstr.escape(tempStorage.message)}, ${coordinates.lat},  ${coordinates.long},  ${sqlstr.escape(tempStorage.watsonData)}, ${Math.round(Math.random() * 10000)});`;
           console.log(insertion);
 
           const pool = new Pool({
