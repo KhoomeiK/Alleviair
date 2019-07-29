@@ -11,12 +11,24 @@ module.exports = function (server) {
 
   server.get('/', (req, res) => {
     // res.send('Sorry, the web app is currently only available locally');
-    res.sendFile(path.join(__dirname, '../web/info.html'));
+    res.sendFile(path.join(__dirname, '../web/index.html'));
   });
 
   server.get('/maps', (req, res) => {
+    res.redirect('/dashboard');
+  });
+  server.get('/maps.html', (req, res) => {
+    res.redirect('/dashboard');
+  });
+
+  server.get('/dashboard', (req, res) => {
     // res.send('Sorry, the web app is currently only available locally');
-    res.sendFile(path.join(__dirname, '../web/maps.html'));
+    res.sendFile(path.join(__dirname, '../web/dashboard.html'));
+  });
+
+  server.get('/privacy', (req, res) => {
+    // res.send('Sorry, the web app is currently only available locally');
+    res.sendFile(path.join(__dirname, '../web/privacy.html'));
   });
 
   server.get('/get_points', (req, res) => {
